@@ -5,24 +5,33 @@
 
 
 
-void createChessBoard(std::vector<std::vector<float>>& chessBoard, int squareSize){
+void createChessBoard(std::vector<std::vector<float> >& chessBoard, int ratio,int rWitdh, int rHeight){
 
 
-    auto rectangles = 0;
+    auto rectanglesWVar     = 5;
+    bool rectanglesHVar  = true;
 
 
     for(int y = 0; y < chessBoard.size(); y++){
-        for(int x = 0; x < chessBoard[y].size(); x++){
-            if(rectangles == 10){
-                rectangles = 0;
-            }
+        if((y%rHeight) == 0)
 
-            else if(rectangles>4){
+            rectanglesHVar = !rectanglesHVar;
+
+        if (rectanglesHVar)
+            rectanglesWVar = 0;
+        else if (!rectanglesHVar)
+            rectanglesWVar = rWitdh;
+
+        for(int x = 0; x < chessBoard[y].size(); x++){
+            if(rectanglesWVar < rWitdh){
                 chessBoard[y][x] = 1;
-                rectangles++;
+                rectanglesWVar++;
+            }
+            else if(rectanglesWVar == (2*rWitdh)-1){
+                rectanglesWVar = 0;
             }
             else
-                rectangles++;
+                rectanglesWVar++;
         }
     }
 
@@ -30,10 +39,12 @@ void createChessBoard(std::vector<std::vector<float>>& chessBoard, int squareSiz
 
 }
 
-void print2DVector(std::vector<std::vector<float>>& chessBoard){
+void print2DVector(std::vector<std::vector<float> >& chessBoard){
+    auto ascii = std::vector<std::string>({" ",".",":",",",":","-","=","+","*","#","%","@"});
+
     for(int y = 0; y < chessBoard.size(); y++){
         for(int x = 0; x < chessBoard[y].size(); x++){
-            std::cout << chessBoard[y][x];
+            std::cout << ascii[chessBoard[y][x]*10];
         }
         std::cout << std::endl;
     }
@@ -45,17 +56,18 @@ int main() {
 
     //ratio = 2.5
 
+
     const auto heightChess   = 100;
     const auto widthChess    = 250;
-    const auto radiusCircle  = 0;
+    const auto ratio         = 2.5;
 
     //std::vector<std::vector<float>>* = new std::vector<std::vector<float>>;
-    std::vector<std::vector<float>>  chessBoard(heightChess, std::vector<float>(widthChess,0));
+    std::vector<std::vector<float> >  chessBoard(heightChess, std::vector<float>(widthChess,0));
 
-    createChessBoard(chessBoard,0);
+    createChessBoard(chessBoard,ratio, 9,5);
 
 
-    print2DVector(chessBoard)
+    print2DVector(chessBoard);
 
 
     return 0;
