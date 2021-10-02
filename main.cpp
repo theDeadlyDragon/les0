@@ -9,7 +9,8 @@ void createChessBoard(std::vector<std::vector<float> >& chessBoard, int ratio,in
 
 
     auto rectanglesWVar     = 5;
-    bool rectanglesHVar  = true;
+    bool rectanglesHVar     = true;
+    auto opacity            = 10;
 
 
     for(int y = 0; y < chessBoard.size(); y++){
@@ -24,7 +25,7 @@ void createChessBoard(std::vector<std::vector<float> >& chessBoard, int ratio,in
 
         for(int x = 0; x < chessBoard[y].size(); x++){
             if(rectanglesWVar < rWitdh){
-                chessBoard[y][x] = 1;
+                chessBoard[y][x] = opacity;
                 rectanglesWVar++;
             }
             else if(rectanglesWVar == (2*rWitdh)-1){
@@ -44,7 +45,7 @@ void print2DVector(std::vector<std::vector<float> >& chessBoard){
 
     for(int y = 0; y < chessBoard.size(); y++){
         for(int x = 0; x < chessBoard[y].size(); x++){
-            std::cout << ascii.at(chessBoard[y][x]*10);
+            std::cout << ascii.at(chessBoard[y][x]);
         }
         std::cout << std::endl;
     }
@@ -64,7 +65,7 @@ int main() {
     //std::vector<std::vector<float>>* = new std::vector<std::vector<float>>;
     std::vector<std::vector<float> >  chessBoard(heightChess, std::vector<float>(widthChess,0));
 
-    createChessBoard(chessBoard,ratio, 9,5);
+    createChessBoard(chessBoard,ratio, 10,5);
 
 
     print2DVector(chessBoard);
