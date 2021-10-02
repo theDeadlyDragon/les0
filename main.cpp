@@ -40,11 +40,11 @@ void createChessBoard(std::vector<std::vector<float> >& chessBoard, int ratio,in
 }
 
 void print2DVector(std::vector<std::vector<float> >& chessBoard){
-    auto ascii = std::vector<std::string>({" ",".",":",",",":","-","=","+","*","#","%","@"});
+    std::string ascii =  " .\'`^\",:;Il!i><~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@";
 
     for(int y = 0; y < chessBoard.size(); y++){
         for(int x = 0; x < chessBoard[y].size(); x++){
-            std::cout << ascii[chessBoard[y][x]*10];
+            std::cout << ascii.at(chessBoard[y][x]*10);
         }
         std::cout << std::endl;
     }
