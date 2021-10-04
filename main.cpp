@@ -15,7 +15,7 @@ std::vector<int> createChessBoard(std::vector<std::vector<std::vector<float> > >
     int corY = (chessBoard.size()/2);
     int mX = 0;
     int mY = 0;
-    auto zeroPoint = std::vector<int> ({0,0});
+    auto zeroPoint = std::vector<int> ({ 0,0 });
     std::cout << corY << std::endl;
 
 
@@ -39,7 +39,7 @@ std::vector<int> createChessBoard(std::vector<std::vector<std::vector<float> > >
 
         for(int x = 0; x < chessBoard[y].size(); x++){
             if(rectanglesWVar < rWidth){
-                chessBoard[y][x][0] = 15;
+                chessBoard[y][x][0] = 45;
                 rectanglesWVar++;
             }
             else if(rectanglesWVar == (2*rWidth)-1){
@@ -78,12 +78,15 @@ void createDonut(std::vector<std::vector<std::vector<float> > >& chessBoard, int
     for(int y = 0; y < chessBoard.size(); y++){
         for(int x = 0; x < chessBoard[y].size(); x++){
 
-
-
             var = sqrt(pow(chessBoard[y][x][1],2)+pow(chessBoard[y][x][2],2));
 
             if(minRadius<= var && maxRadius>= var){
-                chessBoard[y][x][0] = chessBoard[y][x][0]+ 20;
+
+                if(chessBoard[y][x][0] == 0)
+                    chessBoard[y][x][0] = chessBoard[y][x][0]+ 45;
+
+                else
+                    chessBoard[y][x][0] = chessBoard[y][x][0]+ 17;
                 //std::cout << sqrt(pow(cor[y][x][0],2)+pow(cor[y][x][1],2)) << " " << cor[y][x][0]<< ":" << cor[y][x][1]<< std::endl;
 
                 //std::cout << "help  ";
@@ -129,7 +132,7 @@ int main() {
     const auto heightChess   = 100;
     const auto widthChess    = 200;
     const auto ratio         = 2;
-    auto zeroPoint = std::vector<int> ({0,0});
+    auto zeroPoint = std::vector<int> ({ 0,0 });
     //auto chessZeroX = 0;
     //auto chessZeroY = 0;
 
@@ -140,7 +143,7 @@ int main() {
     std::cout << zeroPoint[0] << ":" << zeroPoint[1] << std::endl;
     //
 
-    //createDonut(chessBoard);
+    createDonut(chessBoard,40,30);
     //print3DVector(chessBoard);
     print2DVector(chessBoard);
 
