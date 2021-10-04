@@ -6,3 +6,7 @@
 #define CHESSBOARD_MAIN_H
 
 #endif //CHESSBOARD_MAIN_H
+
+class vec3D{
+
+};
